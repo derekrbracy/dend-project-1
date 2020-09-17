@@ -140,9 +140,7 @@ def process_log_file(cur: cursor, filepath: str) -> None:
         cur.execute(songplay_table_insert, songplay_data)
 
 
-def process_data(
-    cur: cursor, conn: connection, filepath: str, func: Callable[cursor, connection]
-) -> None:
+def process_data(cur: cursor, conn: connection, filepath: str, func: Callable) -> None:
     """
     Process each data file in a given filepath using func
 
