@@ -66,20 +66,20 @@ The Sparkify analytics database (sparkifydb) has a star schema design. Star sche
 
 ### Fact Table
 
-* **songplays**: song play data together with user, artist, and song info (songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent)
+* **songplays**: song play data together with user, artist, and song info
 
 ### Dimension Tables
 
-* **users**: user info (columns: user_id, first_name, last_name, gender, level)
-* **songs**: song info (columns: song_id, title, artist_id, year, duration)
-* **artists**: artist info (columns: artist_id, name, location, latitude, longitude)
-* **time**: detailed time info about song plays (columns: start_time, hour, day, week, month, year, weekday)
+* **users**: user info
+* **songs**: song info 
+* **artists**: artist info
+* **time**: detailed time info about song plays
 
 ## Schema
 
 ![Sparkifydb schema as Entity Relationship Diagram](/udacity-project-1-diagram.png)
 
-_*sparkifydb entity relationship diagram. songplays is a fact table and time, users, songs, and artists as dimension tables*_
+_*sparkifydb entity relationship diagram*_
 
 ---
 
