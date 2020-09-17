@@ -38,7 +38,7 @@ CREATE TABLE Songs(
     title VARCHAR,
     artist_id VARCHAR,
     year INT,
-    duration NUMERIC);
+    duration DECIMAL);
 """
 
 artist_table_create = """
@@ -46,8 +46,8 @@ CREATE TABLE Artists(
     artist_id VARCHAR PRIMARY KEY,
     name VARCHAR,
     location VARCHAR,
-    latitude NUMERIC,
-    longitude NUMERIC);
+    latitude DECIMAL,
+    longitude DECIMAL);
 """
 
 time_table_create = """
