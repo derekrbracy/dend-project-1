@@ -76,6 +76,7 @@ The Sparkify analytics database (sparkifydb) has a star schema design. Star sche
 * **time**: detailed time info about song plays
 
 ## Schema
+https://ibb.co/2M6h4Dg
 
 ![Sparkifydb schema as Entity Relationship Diagram](/udacity-project-1-diagram.png)
 
