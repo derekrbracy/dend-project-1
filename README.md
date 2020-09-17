@@ -12,7 +12,7 @@ This project contains a collection of scripts which process data and create and 
 
  There are two different JSON file types to process.
 
-* **./data/song_data**: static data about artists and songs
+**./data/song_data**: static data about artists and songs
 
 ```json
 {
@@ -29,7 +29,7 @@ This project contains a collection of scripts which process data and create and 
 }
 ```
 
-* **./data/log_data**: event data of service usage e.g. who listened what song, when, where, and with which client
+**./data/log_data**: event data of service usage e.g. who listened what song, when, where, and with which client
 
 ```json
 {
