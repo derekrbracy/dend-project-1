@@ -1,8 +1,16 @@
+"""
+This module extracts data from ./data/song_data and ./data/log_data json 
+files, processes the data, and then inserts it into the tables in the sparkify database
+created by the 'create_tables.py' module 
+"""
+
+from typing import Callable
+from psycopg2.extensions import connection, cursor
+
 import os
 import glob
-import psycopg2
 import pandas as pd
-from psycopg2.extensions import connection, cursor
+
 
 from sql_queries import (
     songplay_table_insert,
@@ -16,11 +24,12 @@ from sql_queries import (
 
 def process_song_file(cur: cursor, filepath: str) -> None:
     """
-    Process a song file and load it to the database
+    Process a given song file and load it to the database
 
     Parameters
     ----------
-    cur: cursor,
+    cur: cursor, a cursor object which allows Python to execute PostgreSQL commands in a database
+    session
     filepath: str, a string specifying the directory to get file names from
 
     Returns
@@ -56,7 +65,8 @@ def process_log_file(cur: cursor, filepath: str) -> None:
 
     Parameters
     ----------
-    cur: cursor,
+    cur: cursor, a cursor object which allows Python to execute PostgreSQL commands in a database
+    session
     filepath: str, a string specifying the directory to get file names from
 
     Returns
@@ -92,7 +102,9 @@ def process_log_file(cur: cursor, filepath: str) -> None:
         cur.execute(time_table_insert, list(row))
 
     # load user table
-    user_df = df[["userId", "firstName", "lastName", "gender", "level"]]
+    user_df = df[
+        ["userId", "firstName", "lastName", "gender", "level"]
+    ].drop_duplicates()
 
     # insert user records
     # pylint: disable=unused-argument
@@ -126,16 +138,20 @@ def process_log_file(cur: cursor, filepath: str) -> None:
         cur.execute(songplay_table_insert, songplay_data)
 
 
-def process_data(cur: cursor, conn: connection, filepath: str, func: callable) -> None:
+def process_data(
+    cur: cursor, conn: connection, filepath: str, func: Callable[cursor, connection]
+) -> None:
     """
     Process each data file in a given filepath using func
 
     Parameters
     ----------
-    cur: cursor,
-    conn: connection,
+    cur: cursor, a cursor object which allows Python to execute PostgreSQL commands in a database
+    session
+    conn: connection, a connection object which handles the connection to a PostgreSQL database
+    instance
     filepath: str, a string specifying the directory to get file names from
-    func: callable,
+    func: callable, a function defined in this module: process_song_file or process_log_file
 
     Returns
     -------
@@ -161,9 +177,7 @@ def process_data(cur: cursor, conn: connection, filepath: str, func: callable) -
 
 
 def main():
-    conn = psycopg2.connect(
-        "host=127.0.0.1 dbname=sparkifydb user=postgres password=bracyderek"
-    )
+    conn = connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=bracyderek")
     cur = conn.cursor()
 
     process_data(cur, conn, filepath="data/song_data", func=process_song_file)
