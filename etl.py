@@ -7,6 +7,8 @@ created by the 'create_tables.py' module
 from typing import Callable
 from psycopg2.extensions import connection, cursor
 
+import psycopg2
+
 import os
 import glob
 import pandas as pd
@@ -177,7 +179,9 @@ def process_data(
 
 
 def main():
-    conn = connect("host=127.0.0.1 dbname=sparkifydb user=postgres password=bracyderek")
+    conn = psycopg2.connect(
+        "host=127.0.0.1 dbname=sparkifydb user=postgres password=bracyderek"
+    )
     cur = conn.cursor()
 
     process_data(cur, conn, filepath="data/song_data", func=process_song_file)

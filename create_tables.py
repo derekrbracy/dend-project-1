@@ -3,9 +3,10 @@ This module connects to and creates the sparkifydb if it does not already exists
 and creates tables in the sparkifydb as specified by the queries imported from 'sql_queries.py'
 """
 
-import psycopg2
 from typing import Tuple
 from psycopg2.extensions import connection, cursor
+
+import psycopg2
 
 from sql_queries import create_table_queries, drop_table_queries
 
