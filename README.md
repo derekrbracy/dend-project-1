@@ -96,13 +96,6 @@ _*sparkifydb entity relationship diagram*_
 
 _*There are many great existing tutorials on how to install Python, Jupyter notebook, and Postgresql, as such details are omitted here.*_
 
-### Create the database
-
-the project has two scripts:
-
-* **create_tables.py**: 
-* **etl.py**: 
-
 ### Create tables in the database
 
 Open a command prompt and type
